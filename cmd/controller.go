@@ -3,10 +3,14 @@ package cmd
 import (
 	"encoding/json"
 	"net/http"
+	"strconv"
 )
 
 func Get(w http.ResponseWriter, r *http.Request) {
-	respondWithJSON(w, http.StatusOK, r.FormValue("n"))
+	var n, _ = strconv.Atoi(r.FormValue("n"))
+	var result = FibonacciRecursion(n)
+
+	respondWithJSON(w, http.StatusOK, result)
 }
 
 func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
