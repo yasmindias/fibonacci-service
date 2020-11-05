@@ -1,8 +1,15 @@
 package cmd
 
 func FibonacciRecursion(n int) int {
-	if n < 2 {
-		return n
+	return additiveSequence(n, 0, 1)
+}
+
+func additiveSequence(n, t0, t1 int) int {
+	if n == 0 {
+		return t0
 	}
-	return FibonacciRecursion(n-1) + FibonacciRecursion(n-2)
+	if n == 1 {
+		return t1
+	}
+	return additiveSequence(n-1, t1, t0+t1)
 }
