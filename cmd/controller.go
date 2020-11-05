@@ -7,8 +7,8 @@ import (
 )
 
 func Get(w http.ResponseWriter, r *http.Request) {
-	var n, _ = strconv.Atoi(r.FormValue("n"))
-	var result = FibonacciRecursion(n)
+	n, _ := strconv.Atoi(r.FormValue("n"))
+	result := FibonacciRecursion(n)
 
 	respondWithJSON(w, http.StatusOK, result)
 }
