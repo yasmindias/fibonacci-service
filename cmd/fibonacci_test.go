@@ -1,12 +1,15 @@
 package cmd
 
-import "testing"
+import (
+	"math/big"
+	"testing"
+)
 
 func TestFibonacciRecursion(t *testing.T) {
 	result := FibonacciRecursion(10)
-	expected := 55
+	expected := big.NewInt(55)
 
-	if result != expected {
+	if result.Cmp(expected) != 0 {
 		t.Errorf("result %d expected %d", result, expected)
 	}
 

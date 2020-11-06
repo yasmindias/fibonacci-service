@@ -7,10 +7,13 @@ import (
 )
 
 func Get(w http.ResponseWriter, r *http.Request) {
-	n, _ := strconv.Atoi(r.FormValue("n"))
-	result := FibonacciRecursion(n)
-
-	respondWithJSON(w, http.StatusOK, result)
+	n, err := strconv.Atoi(r.FormValue("n"))
+	if err == nil {
+		result := FibonacciRecursion(n)
+		respondWithJSON(w, http.StatusOK, result)
+	} else {
+		respondWithJSON(w, http.StatusBadRequest, "Error: input must be an integer")
+	}
 }
 
 func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
